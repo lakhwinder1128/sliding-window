@@ -1,0 +1,24 @@
+  //////we can also use list instead of map ../////
+  
+  int longestConsecutive(vector<int>& nums) {
+        
+        map<int,int>mp;
+        int n=nums.size();
+        for(int i=0;i<n;i++){
+                 mp[nums[i]]++;
+            }
+        int ans=0,x=0;
+        for(int i=0;i<n;i++){
+            
+           if(mp.find(nums[i]-1)==mp.end()){
+                    x=nums[i];
+                    int len=0;
+               while(mp.find(x)!=mp.end()){
+                  len++;
+                   x++;
+               }
+               ans=max(ans,len);
+           }   
+        }
+        return ans;
+    }
