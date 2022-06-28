@@ -1,0 +1,14 @@
+int Solution::solve(vector<int> &a, int b) {
+    map<int,int>mp;
+    int currxor=0;
+    int count=0;
+    for(int i=0;i<a.size();i++){
+        currxor=currxor^a[i];
+        if(currxor==b)count++;
+        if(mp.find(currxor^b)!=mp.end()){
+            count+=mp[currxor^b];
+        }
+        mp[currxor]++;
+    }
+    return count;
+}
