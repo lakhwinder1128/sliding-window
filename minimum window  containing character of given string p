@@ -1,0 +1,57 @@
+////using vector as map to eliminate tle
+
+string smallestWindow (string s, string p)
+    {
+        // Your code here
+        //unordered_map<char,int>mp;
+        vector<int>mp(26,0);
+        int count=0;
+        for(int i=0;i<p.size();i++){
+            mp[p[i]-'a']++;
+            
+        }
+        for(int i=0;i<mp.size();i++){
+            if(mp[i]>0)count++;
+        }
+        
+       // cout<<"count = "<<count<<endl;
+        int i=0;
+        int j=0;
+        vector<pair<int,int>>v;
+        while(i<=j&&j<s.size()){
+            //cout<<"singh"<<endl;
+            if(find(p.begin(),p.end(),s[j])!=p.end()){
+                mp[s[j]-'a']--;
+                if(mp[s[j]-'a']==0)count--;
+               // cout<<count<<endl;
+                if(count==0){
+                    while(find(p.begin(),p.end(),s[i])==p.end()||mp[s[i]-'a']<0){
+                        if(find(p.begin(),p.end(),s[i])!=p.end())mp[s[i]-'a']++;
+                        i++;
+                    }
+                  // cout<<" i= "<<i<<" j= "<<j<<endl;
+                    v.push_back({i,j});
+                }
+            }
+            j++;
+        }
+         string ans;
+        if(v.size()==0)return to_string(-1);
+        else{
+           
+            int mn=INT_MAX;
+            int start=0,end=0;
+            for(int i=0;i<v.size();i++){
+                if(mn>v[i].second-v[i].first){
+                    mn=v[i].second-v[i].first;
+                    start=v[i].first;
+                    end=v[i].second;
+                    
+                }
+            }
+            for(int i=start;i<=end;i++){
+                ans.push_back(s[i]);
+            }
+        }
+        return ans;
+    }
