@@ -24,3 +24,6 @@
     	return atmostkdistinct(s,k)-atmostkdistinct(s,k-1);
     
     }
+//////if it was asked to find sum of length of all that subarray having all distinct char
+              int len=j-i+1;
+                ans=ans+len*(len+1)/2;    instead of ans=ans + len;
