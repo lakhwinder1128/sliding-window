@@ -1,0 +1,26 @@
+int sumoflength(int arr[], int n)
+    {
+        unordered_map<int,int>mp;
+        int i=0,j=0;
+        int ans=0;
+        while(i<=j&&j<n){
+            mp[arr[j]]++;
+            if(mp.size()<j-i+1){
+                while(mp.size()<j-i+1){
+                    mp[arr[i]]--;
+                    if(mp[arr[i]]==0)mp.erase(arr[i]);
+                    i++;
+                }
+                
+            }
+            
+            if(mp.size()==j-i+1){
+                int len=j-i+1;
+                ans=ans+len*(len+1)/2;
+               
+            }
+               j++;
+          
+        }
+        return ans;
+    }
