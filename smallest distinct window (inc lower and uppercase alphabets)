@@ -1,0 +1,31 @@
+  int findSubString(string str)
+    {
+        // Your code goes here  
+        int n=str.size();
+        vector<int>mp(58,0);
+        int count=0;
+        for(int i=0;i<str.size();i++){
+            if(mp[str[i]-'A']==0){mp[str[i]-'A']++;
+            
+            count++;}
+        }
+       // cout<<count<<endl;
+       
+        int i=0,j=0;
+        int ans=INT_MAX;
+        while(i<=j&&j<n){
+                     if(1){mp[str[j]-'A']--;
+                      if(mp[str[j]-'A']==0)count--;}
+                     if(count==0){
+                          while(mp[str[i]-'A']<0){
+                              mp[str[i]-'A']++;
+                              i++;
+                       }
+                       //cout<<"start= "<<i<<" end= "<<j<<endl;
+                          ans=min(ans,j-i+1);
+                          
+                      }
+                      j++;
+        }
+        return ans;
+    }
