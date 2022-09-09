@@ -1,4 +1,10 @@
-  int solve(string s,int k,int start,int end){
+//// abaaabdbcca   k=3   a-5
+                         b-3
+                         c-2  so here c and d will cause problem they cannot be the part of substring   so possible substring may be    " abaaab" "b" "a"
+                         d-1                                                                                      a and b is disqualified because length of substring <k                 
+                                                                                                      abaaab  =>>  a-4
+                                                                                                                  b-2  b cannot  be part of substring so "a" "aaa"   so "aaa" is only 
+int solve(string s,int k,int start,int end){                                                                                                  possible ans   ,length =3
         if(k>end-start+1)return 0;
         if(start<0||start>end||end<0)return 0;
         if(k==0||k==1)return end-start+1;
