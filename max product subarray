@@ -1,36 +1,20 @@
-	long long maxProduct(vector<int> arr, int n) {
-	    // code here
-	    long long ans=INT_MAX;
-	    ans=-ans;
-	    long long mx[n];
-	    mx[0]=arr[0];
-	    long long mn[n];
-	    mn[0]=arr[0];
-	    
-	    for(int i=1;i<n;i++){
-	        if(arr[i]==0){
-	            mx[i]=1;
-	            mn[i]=1;
-	            continue;
-	        }
-	        long long a=arr[i]*mx[i-1];
-	        long long b=arr[i]*mn[i-1];
-	        long long mini,maxi;
-	        if(a>b)maxi=a;
-	          else maxi=b;
-	          if(a>b)mini=b;
-	          else mini=a;
-	      //  int maxi=max(a,b);
-	       // maxi=max(maxi,arr[i]);
-	        if(arr[i]>maxi)maxi=arr[i];
-	       // int  mini=min(a,b);
-	      //  mini=min(mini,arr[i]);
-	      if(mini>arr[i])mini=arr[i];
-	        mx[i]=maxi;
-	        mn[i]=mini;
-	    }
-	    for(int i=0;i<n;i++){
-	        ans=max(ans,mx[i]);
-	    }
-	    return ans;
-	}
+ // (if no zero in  array) subarray will either start from index 0 or will end at index n-1.
+ 
+ int maxProduct(vector<int>& nums) {
+        int ans=INT_MIN;
+        int n=nums.size();
+        int  p1=1,p2=1;
+        for(int i=0;i<n;i++){
+            p1=p1*nums[i];
+            
+            ans=max(ans,p1);
+            if(p1==0)p1=1;
+        }
+         for(int i=n-1;i>=0;i--){
+            p2=p2*nums[i];
+            
+            ans=max(ans,p2);
+            if(p2==0)p2=1;
+        }
+        return ans;
+    }
